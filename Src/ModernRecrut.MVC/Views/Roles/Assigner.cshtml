@@ -1,0 +1,38 @@
+﻿@model ModernRecrut.MVC.Models.User.UserRoleViewModel;
+
+@{
+    ViewData["Title"] = "Assigner";
+}
+
+<h1>Assignation</h1>
+
+<h4>Assigner un rôle à un utilisateur</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Assigner">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" asp-items="@ViewBag.Users" class="form-select"></select>
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoleName" class="control-label"></label>
+                <select asp-for="RoleName" asp-items="@ViewBag.Roles" class="form-select"></select>
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <input type="submit" value="Assigner" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Retourner à la liste des rôles</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

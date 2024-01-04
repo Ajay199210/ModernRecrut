@@ -1,0 +1,60 @@
+﻿@model IEnumerable<string>
+@using ModernRecrut.MVC.Services;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Liste des documents</h1>
+
+<a class="btn btn-primary" asp-controller="Documents" asp-action="Add">Ajouter un document</a>
+
+<br />
+<br />
+
+<table class="table table-striped table-dark table-bordered text-center mt-1 align-middle">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item
+                </td>
+                <td>
+                    @{
+                        // On est sûr que le nom du document est bien formaté
+                        // pour utiliser split() afin d'extraire les informations
+                        var docType = item.Split('_')[1];
+                        switch (docType)
+                        {
+                            case "CV":
+                                docType = "CV";
+                                break;
+                            case "Diplome":
+                                docType = "Diplôme";
+                                break;
+                            case "LettreDeMotivation":
+                                docType = "Lettre de motivation";
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+                    @docType
+                </td>
+                <td>
+                    <a class="text-warning" type="submit" href="@string.Format("https://localhost:7125/documents/" + item)"
+                    target="_blank">Consulter/Télécharger</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

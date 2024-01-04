@@ -1,0 +1,24 @@
+-----------------------------------------------
+ Accounts Credentials (for testing user roles)
+-----------------------------------------------
+
+Admin email: j.doe@test.com
+Password: Pass-123
+
+Candidat1 email: candidat1@test.com
+Password: Pass-123
+
+Candidat2 email: candidat2@test.com
+Password: Pass-123
+
+Candidat3 email: candidat3@test.com
+Password: Pass-123
+
+Employe email: employe@test.com
+Password: Pass-123
+
+RH email: rh@test.com
+Password: Pass-123
+
+RH2 email: rh2@test.com
+Password: Pass-123

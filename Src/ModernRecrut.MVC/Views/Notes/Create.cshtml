@@ -1,0 +1,34 @@
+﻿@model ModernRecrut.MVC.Models.Postulations.Note
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Ajouter une note</h1>
+
+<h4>Nouvelle note</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Contenu" class="control-label"></label>
+                <textarea asp-for="Contenu" class="form-control"></textarea>
+                <span asp-validation-for="Contenu" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Ajouter" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Postulations" class="btn btn-primary mt-2">Retourner à la liste des postulations</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

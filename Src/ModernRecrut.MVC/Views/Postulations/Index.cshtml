@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ModernRecrut.MVC.Models.Postulations.Postulation>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Liste des postulations</h1>
+
+<br />
+
+<div class="mb-3">
+    <i class="text-primary fw-bold">
+        Il n'est pas possible de modifier ou supprimer les postulations dont la date de disponibilité est
+        inférieure ou supérieure de <span class="text-decoration-underline">5 jours</span> au @DateTime.Now.
+    </i>
+    <p class="text-priamry fw-bold">
+        Pour voir les notes d'une postulation, veuillez svp <span class="text-decoration-underline">consulter</span>
+        la fiche de la postulation correspondante.
+    </p>
+</div>
+
+<table class="table table-striped table-dark table-bordered text-center mt-1 align-middle">
+    <thead>
+        <tr>
+            <th>
+                Candidat
+            </th>
+            <th>
+                Offre d'emploi
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PretentionSalariale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDisponibilite)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Candidat.Prenom) @Html.DisplayFor(modelItem => item.Candidat.Nom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OffreEmploi.Nom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PretentionSalariale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateDisponibilite)
+                </td>
+                @if (item.DateDisponibilite < DateTime.Now.AddDays(-5) || item.DateDisponibilite > DateTime.Now.AddDays(5))
+                {
+                    <td>
+                        <a class="text-warning" asp-action="Details" asp-route-id="@item.Id">Consulter</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a class="text-warning" asp-action="Details" asp-route-id="@item.Id">Consulter</a> |
+                        <a class="text-warning" asp-action="Edit" asp-route-id="@item.Id">Modifier</a> |
+                        <a class="text-warning" asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

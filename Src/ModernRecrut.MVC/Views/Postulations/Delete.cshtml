@@ -1,0 +1,56 @@
+﻿@model ModernRecrut.MVC.Models.Postulations.Postulation
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Suppession</h1>
+
+<h3>Êtes-vous sûr de supprimer cette offre d'emploi ?</h3>
+<div>
+    <h4>Postulation #@Model.Id</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdCandidat)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Candidat.Prenom) @Html.DisplayFor(model => model.Candidat.Nom)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdOffreEmploi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OffreEmploi.Nom)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PretentionSalariale)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PretentionSalariale)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateDisponibilite)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateDisponibilite)
+        </dd>
+    </dl>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        @if (Model.DateDisponibilite < DateTime.Now.AddDays(-5) || Model.DateDisponibilite > DateTime.Now.AddDays(5))
+        {
+            <div class="text-danger fw-bold">
+                <i>Il n’est pas possible de supprimer les postulations dont la date de disponibilité est
+                    inférieure ou supérieure de <span class="text-decoration-underline">5 jours</span> au @DateTime.Now
+                </i>
+            </div>
+            <br />
+        }
+        else
+        {
+            <input type="submit" value="Supprimer" class="btn btn-danger"/> <span>|</span>
+        }
+        <a asp-action="Index" class="btn btn-primary">Retourner à la liste des postulations</a>
+    </form>
+</div>

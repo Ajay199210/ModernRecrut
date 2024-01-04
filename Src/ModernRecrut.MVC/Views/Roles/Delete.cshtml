@@ -1,0 +1,23 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole;
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Êtes-vous sûr de vouloir supprimer le rôle</h1>
+
+<div>
+    <hr />
+    <div class="col-md-4">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Name" />
+            <span asp-validation-for="NormalizedName" class="text-danger"></span>
+            <div class="form-group mt-2">
+                <input type="submit" value="Confirmer" class="btn btn-danger" /> |
+                <a asp-action="Index">Retourner à la liste des rôles</a>
+            </div>
+            <br />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </form>
+    </div>
+</div>

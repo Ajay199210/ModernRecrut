@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Liste des rôles</h1>
+
+@if(User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Ajouter Role</a>
+    </p>
+    <p>
+        <a asp-action="Assigner" class="btn btn-success">Assigner Role</a>
+    </p>
+}
+
+<ul class="list-group">
+    @foreach (var item in Model)
+    {
+        <li class="list-group-item d-flex justify-content-between align-items-center bg-dark">
+            <span class="text-light">@Html.DisplayFor(modelItem => item.Name)</span>
+            @if(User.IsInRole("Admin"))
+            {
+                <a class="btn btn-danger" asp-action="Delete" asp-route-name="@item.Name">Supprimer</a>
+            }
+        </li>
+    }
+</ul>

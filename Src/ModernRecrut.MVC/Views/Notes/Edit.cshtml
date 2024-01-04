@@ -1,0 +1,63 @@
+﻿@model ModernRecrut.MVC.Models.Postulations.Note
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@if (Model.NomEmetteur == "ApplicationPostulation")
+{
+    <h3 class="text-primary">
+        Vous ne pouvez pas modifier la note
+        généré automatiquement par l'application
+    </h3>
+}
+else
+{
+    <h3>Modifier une note</h3>
+}
+
+<h4>Note @Model.Id</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @if(Model.NomEmetteur == "ApplicationPostulation")
+        {
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Contenu" class="control-label"></label>
+                    <textarea asp-for="Contenu" class="form-control" readonly></textarea>
+                    <span asp-validation-for="Contenu" class="text-danger"></span>
+                </div>
+            </form>
+        }
+        else
+        {
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Contenu" class="control-label"></label>
+                    <textarea asp-for="Contenu" class="form-control"></textarea>
+                    <span asp-validation-for="Contenu" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="submit" value="Enregistrer" class="btn btn-primary" />
+                </div>
+            </form>
+        }
+    </div>
+</div>
+
+<br />
+
+<div>
+    <a asp-action="Details" asp-controller="Postulations" asp-route-id="@Model.IdPostulation"
+       class="btn btn-primary">Retourner à la fiche de la postulation</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

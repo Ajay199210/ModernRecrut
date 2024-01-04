@@ -1,0 +1,47 @@
+﻿@model FileUpload;
+@using ModernRecrut.MVC.Models.Document;
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h1>Ajouter un document</h1>
+
+<br />
+
+<form method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <h5>Téléverser un fichier</h5>
+            <input type="file" asp-for="FileData" accept=".pdf, .doc, .docx"/>
+            <span asp-validation-for="FileData" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <div class="col-md-10">
+            <label>Séléctionner le type du document</label>
+            <select class="form-select-sm" asp-for="DocType" 
+                asp-items="Html.GetEnumSelectList<DocumentType>()">
+                <option value="">Choix</option>
+            </select>
+            <span asp-validation-for="DocType" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Verser" class="btn btn-primary mt-2"/>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Retourner à la liste des documents</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

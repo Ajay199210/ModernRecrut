@@ -1,0 +1,35 @@
+﻿@model ModernRecrut.MVC.DTO.RequetePostulation;
+@{
+    ViewData["Title"] = "Postuler";
+}
+
+<h1>Postuler pour une offre d'emploi</h1>
+
+
+<div class="row">
+    @*<h4>Offre #@Model.IdOffreEmploi</h4>*@
+    <hr />
+    <div class="col-md-4">
+        <form asp-action="Postuler">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PretentionSalariale" class="control-label"></label>
+                <input asp-for="PretentionSalariale" class="form-control" />
+                <span asp-validation-for="PretentionSalariale" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="DateDisponibilite" class="control-label"></label>
+                <input asp-for="DateDisponibilite" class="form-control" />
+                <span asp-validation-for="DateDisponibilite" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Postuler" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<p>
+    <a asp-action="Index" asp-controller="OffresEmplois">Retourner à la page des offres d'emplois</a>
+</p>

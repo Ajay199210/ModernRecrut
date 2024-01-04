@@ -1,0 +1,62 @@
+﻿@model ModernRecrut.MVC.Models.OffreEmploi;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Publier une nouvelle offre d'emploi</h1>
+
+<h4>Offre d'emploi</h4>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label">Id</label>
+                <input asp-for="Id" class="form-control" value="@Guid.NewGuid()" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="Poste" class="control-label">Poste</label>
+                <input asp-for="Poste" class="form-control" />
+                <span asp-validation-for="Poste" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nom" class="control-label">Nom</label>
+                <input asp-for="Nom" class="form-control" />
+                <span asp-validation-for="Nom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateAffichage" class="control-label">Date d'affichage</label>
+                <input asp-for="DateAffichage" class="form-control" value="@DateTime.Now" />
+                <span asp-validation-for="DateAffichage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateFin" class="control-label">Date de fin</label>
+                <input asp-for="DateFin" class="form-control" />
+                <span asp-validation-for="DateFin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">Description</label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Ajouter" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Retourner à la liste des offres d'emplois</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
